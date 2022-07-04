@@ -15,7 +15,6 @@ function App() {
        <Routes>
           <Route exact path="/" element={<Content />} />
           <Route exact path="/play" element={<Play />} />
-          <Route exact path="/play/sign-up" element = {<SignUp />} />
           
        </Routes>
       

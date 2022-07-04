@@ -1,15 +1,25 @@
 import './play.css';
 import {useState, useEffect} from 'react';
 import {Popup} from '../Popup/popup';
+import {Console} from '../Terminal/Console';
+import { DisplayOutput } from '../Terminal/DisplayOutput';
 
 export const Play = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [step, setStep] = useState("all");
+    const changeStep = (step) =>{
+            setStep(step);
+            console.log(step + " step changed");
+     }
     const toggleGroup = () => {
         
         setIsOpen(!isOpen);
+        if(isOpen === true) {
+            setStep("all");
+        }
     }
-
+    
     return(
         <div className="play-container">
             <div className="game">
@@ -21,7 +31,8 @@ export const Play = () => {
                         </select>
                     </div>
                     <div className="code">
-                        <span id="cursor"></span>
+                        <Console />
+                
                     </div>
                 </div>
                 <div className="intro">
@@ -32,7 +43,7 @@ export const Play = () => {
                 Save my progress
             </button>
 
-            <Popup isOpen = {isOpen} toggleGroup = {toggleGroup}/>
+            <Popup isOpen = {isOpen} toggleGroup = {toggleGroup} step = {step} changeStep= {changeStep}/>
         </div>
         
         

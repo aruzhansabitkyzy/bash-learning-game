@@ -1,29 +1,22 @@
-// import {Link, Router, Route} from 'react-router-dom';
-// import '../Popup/popup.css';
-// import {useState, useEffect} from 'react';
-// import {SignUp} from '../SignUp/sign-up';
+import {Link, Router, Route} from 'react-router-dom';
+import '../Popup/popup.css';
+import {useState, useEffect} from 'react';
+import {SignUp} from '../SignUp/sign-up';
 
-
-// export const MainPopup = (props) => {
+export const MainPopup = (props) => {
+ 
+    return(
+                <div className="main-cont">
+                        <div className="message">
+                            <p>Sign up to save your progress</p> 
+                        </div>
     
-//     const [step, setStep] = useState("all");
-//     const changeStep = (step) =>{
-//             setStep(step);
-//             console.log(step + " step changed");
-//      }
-//      useEffect(() => {
-//         console.log(step);
-//      }, [])
-//     return(
-//     (props.isOpen) ? (
-
-//         <div className="popup-container">
-//                 <div className="close">
-//                     <img src={require("./close.png")} onClick = {props.toggleGroup} className="close-icon"></img>
-//                 </div>
-//                 {step === " all" && (<Popup />)}
-//         </div>
-//     ) : null
-   
-//    )
-// };
+                        <div className="sign-in-btn" onClick={ () => {props.changeStep("sign-up")} }>
+                            <p>Sign up</p>
+                        </div>
+                        <div className="message-bottom">
+                            Already has an account? <span className="sign-up-btn" onClick={() => props.changeStep("sign-in")}>Sign in</span>
+                        </div>
+                </div>
+   )
+};

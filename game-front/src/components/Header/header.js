@@ -12,7 +12,7 @@ export const Header = () => {
             </div>
             <div className="account">
                 <div className="sign-up">
-                    <input type="text"></input>
+                    <input type="text" className="header_input"></input>
                     <button className="sign-up-button inconsolas">Sign in</button>
                 </div>
             </div>

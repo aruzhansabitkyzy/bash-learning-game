@@ -41,7 +41,7 @@
     align-self: flex-end;
     cursor: pointer;
 }
-.sign-up-btn {
+.sign-in-btn {
     width : 30%;
     height: 10%;
     align-self: center;
@@ -49,6 +49,10 @@
     color: white;
     padding-left: 60px;
     cursor: pointer;
+}
+.sign-up-btn {
+    cursor: pointer;
+    color: #434973;
 }
 .message-bottom {   
     font-size: 18px;
