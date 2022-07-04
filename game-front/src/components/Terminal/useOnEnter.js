@@ -6,21 +6,22 @@ export const useOnEnter = () => {
         quit: "quitting"
     }
     const [consoleOutput, updateConsoleOutput]  = useState([]);
-    const [consoleInput, updateInputConsole] = useState([]);
+    // const [consoleInput, updateInputConsole] = useState([]);
      
 
+    console.log(consoleOutput);
     const onEnter = (value, key) => {
        
          if(key === "Enter") {
             const newConsoleLine = commands[value] || "Invalid Command";
-
+             updateConsoleOutput([...consoleOutput, `${value}:${newConsoleLine}`]);
             // const newConsoleInput = [...consoleInput];
             // newConsoleInput.push(value);
             // updateInputConsole(newConsoleInput);
 
-            const newConsoleOutput = [...consoleOutput];
-            newConsoleOutput.push(newConsoleLine);
-            updateConsoleOutput(newConsoleOutput); 
+            // const newConsoleOutput = [...consoleOutput];
+            // newConsoleOutput.push(newConsoleLine);
+            // updateConsoleOutput(newConsoleOutput); 
         } 
        
     }

@@ -1,4 +1,5 @@
 export const Prompt  = () => {
-      <span>C:\</span>
-  
+    return (
+      <span style={{color: "white"}}>C:\</span>
+    )
 }

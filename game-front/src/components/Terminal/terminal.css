@@ -1,0 +1,12 @@
+.command {
+    outline : none;
+    border: none;
+    background-color: #0D0C1D;
+    font-size: 16px;
+    font-family : "Inconsolata";
+    color: white;
+}
+.command cursor {
+    width : 8px;
+    height: 3px;
+}

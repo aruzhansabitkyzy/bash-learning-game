@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import {Popup} from '../Popup/popup';
 import {Console} from '../Terminal/Console';
 import { DisplayOutput } from '../Terminal/DisplayOutput';
+// import ScrollableFeed from 'react-scrollable-feed';
 
 export const Play = () => {
 
@@ -34,6 +35,7 @@ export const Play = () => {
                         <Console />
                 
                     </div>
+                 
                 </div>
                 <div className="intro">
                     
