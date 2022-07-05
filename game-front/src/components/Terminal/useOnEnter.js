@@ -1,13 +1,13 @@
 import {useState} from 'react';
 
-export const useOnEnter = () => { 
+export const useOnEnter = (props) => { 
     const commands = {
         help: "help entry",
         quit: "quitting"
     }
     const [consoleOutput, updateConsoleOutput]  = useState([]);
     // const [consoleInput, updateInputConsole] = useState([]);
-     
+    
 
     console.log(consoleOutput);
     const onEnter = (value, key) => {
@@ -15,6 +15,7 @@ export const useOnEnter = () => {
          if(key === "Enter") {
             const newConsoleLine = commands[value] || "Invalid Command";
              updateConsoleOutput([...consoleOutput, `${value}:${newConsoleLine}`]);
+             props.triggerHeight();
             // const newConsoleInput = [...consoleInput];
             // newConsoleInput.push(value);
             // updateInputConsole(newConsoleInput);

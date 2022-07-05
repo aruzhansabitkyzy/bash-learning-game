@@ -1,36 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
 .play-container{
     margin: 0 auto;
-    padding:0 70px;
-    height: 100vh;
-    padding-top: 100px;
+    padding:20px 30px 0 30px;
+    height: 100%;
     background-color: #434973;
     display: flex;
-    flex-direction: column;
 }
 .game {
+    width: 50%;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+  
+}
+.logo{
+    font-family:'Inconsolata';
+    font-size: 50px;
+}
+.definition p {
+    font-family:'Inconsolata';
+    font-size: 25px;
+}
+.maze {
+    position: sticky;
+    top: 0;
+    width: 50vw;
+    height: 50vw;
+    min-width: 300px;
+    min-height: 300px;
+    max-width: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    /* width: 50%;
+    height: 100vh; */
 }
 option, select {
     font-family:'Inconsolata';
+    cursor: pointer;
 }
 .terminal{
     /* width: 570px; */
-    height: 441px;
+    height: 50%;
     background-color: #0D0C1D;
-    width: 50%;
+    width: 100%;
     font-family:'Inconsolata';
-    -webkit-box-shadow: 5px 4px 8px 0px #0D0C1D;
--moz-box-shadow: 5px 4px 8px 0px #0D0C1D;
-box-shadow: 5px 4px 8px 0px #0D0C1D;
-}
-.intro {
-    margin-left: 50px;
-    width: 50%;
-    font-family:'Inconsolata';
-    display: flex;
-    flex-direction: column;
-    margin-top: -55px;
+    border-radius: 10px;
 }
 .headline {
 
@@ -45,13 +60,13 @@ font-style: normal;
 font-weight: 400;
 font-size: 20px;
 }
-.save-progress {
+.btm-btn {
     outline: none;
     border: none;
     width: 300px;
     height: 50px;
     margin: 0 auto;
-    margin-top: 80px;
+    margin-top: 10px;
     background-color: #0D0C1D;
     color: white;
     font-family: 'Consolas';
@@ -62,17 +77,14 @@ font-size: 20px;
     padding-bottom: 30px;
     padding-top: 6px;
 }
-.save-progress p {
-    text-align: center;
-    padding-top: 15px;
-}
+
 .select {
     outline: none;
     margin: 5px 0 0 5px;
     border: none;
     background-color: #0D0C1D;
     color: white;
-    width: 100px;
+    width: 160px;
     height: 30px;
     border: 1px solid white;
     padding-left: 20px;
@@ -82,7 +94,7 @@ font-size: 20px;
 .code {
     position: relative;
     padding: 20px;
-    height: 360px;
+    height:360px;
     overflow-y: auto;
     max-height: 100vh;
 }
@@ -100,4 +112,89 @@ font-size: 20px;
 
 ::webkit-scrollbar {
     height: 400px;
+}
+.next {
+    align-self: flex-end;
+    margin-bottom: 30px;
+}
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.levels {
+    display: flex;
+    width : 245px;
+    height: 30px;
+    justify-content: space-between;
+}
+.level {
+    background-color: rgb(255,255,255,0.3);
+    border-radius: 5px;
+    width: 160px;
+    height: 30px;
+    display: inline-block;
+    font-family: 'Inconsolata';
+    font-weight: 400;
+    font-size: 20px;
+    line-height:30px;
+    padding-left: 20px;
+}
+.arrow {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255,255,255,0.3);
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+#triangle-left { 
+    position: absolute;
+    left:10px;
+    top: 5px;
+    display: inline-block;  
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid white;     
+}
+#triangle-right { 
+    position: absolute;
+    left:10px;
+    top: 5px;
+    display: inline-block;  
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid white;     
+}
+
+.maze {
+    
+    width: 50%;
+    max-height: 100%;
+    background-color: aliceblue;
+    /* opacity : 0.5; */
+    border-radius: 20px;
+    margin: 10px;
+}
+@media(max-width: 764px) {
+    .play-container {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .title {
+        flex-direction: column;
+        align-items: center;
+    }
+    .maze {
+        position:unset;
+    }
+    .game {
+        width: 100%;
+    }
 }

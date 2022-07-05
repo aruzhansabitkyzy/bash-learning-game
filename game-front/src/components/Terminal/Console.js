@@ -4,10 +4,10 @@ import {useOnEnter} from '../Terminal/useOnEnter';
 import { DisplayOutput } from './DisplayOutput';
 import './terminal.css';
 
-export const Console = () => {
+export const Console = (props) => {
     const inputText = useRef();
   
-    const [consoleOutput, onEnter] = useOnEnter();
+    const [consoleOutput, onEnter] = useOnEnter(props);
 
     useEffect(() =>{
         inputText.current.value = "";
@@ -21,7 +21,7 @@ export const Console = () => {
              <div className= "input-prompt">
                 <Prompt /> 
                 <input type="text" className="command" ref={inputText} onKeyPress = {({target: {value} , key}) => onEnter(value, key)}/>
-                 
+                    
              </div>
         </section>
         
