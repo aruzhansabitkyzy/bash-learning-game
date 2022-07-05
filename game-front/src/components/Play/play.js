@@ -1,17 +1,16 @@
 import './play.css';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import {Popup} from '../Popup/popup';
 import {Console} from '../Terminal/Console';
 import { DisplayOutput } from '../Terminal/DisplayOutput';
 // import ScrollableFeed from 'react-scrollable-feed';
 
 export const Play = () => {
-
+    const [scroll, setScroll] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [step, setStep] = useState("all");
     const changeStep = (step) =>{
             setStep(step);
-            console.log(step + " step changed");
      }
     const toggleGroup = () => {
         
@@ -20,7 +19,20 @@ export const Play = () => {
             setStep("all");
         }
     }
-    
+    const scrollRef= useRef();
+
+    useEffect(() => {
+        if(scrollRef.current) {
+            // console.log(scrollRef.current.scrollTop + " top");
+            // console.log(scrollRef.current.scrollHeight + " height");
+            // scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+            scrollRef.current.scrollIntoView({
+                behavior: "smooth",
+                block : "end",
+                inline : "nearest"
+            })
+        }
+    }) 
     return(
         <div className="play-container">
             <div className="game">
@@ -31,7 +43,7 @@ export const Play = () => {
                             <option value="windows">Windows</option>
                         </select>
                     </div>
-                    <div className="code">
+                    <div className="code" ref={scrollRef}>
                         <Console />
                 
                     </div>

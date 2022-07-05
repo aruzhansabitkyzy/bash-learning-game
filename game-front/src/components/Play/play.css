@@ -82,6 +82,13 @@ font-size: 20px;
 .code {
     position: relative;
     padding: 20px;
+    height: 360px;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+::-webkit-scrollbar {  
+    width: 0px;  
+    background: transparent;   
 }
 #cursor {
     position: absolute;
@@ -89,4 +96,8 @@ font-size: 20px;
     width: 5px;
     height:20px;
     background-color: white;
+}
+
+::webkit-scrollbar {
+    height: 400px;
 }
