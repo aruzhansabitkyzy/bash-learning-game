@@ -2,6 +2,7 @@ import './play.css';
 import {useState, useEffect, useRef} from 'react';
 import {Console} from '../Terminal/Console';
 import { DisplayOutput } from '../Terminal/DisplayOutput';
+import { Maze1 } from '../Maze/maze1';
 
 export const Play = () => {
     const [level, setLevel] = useState(1);
@@ -111,7 +112,9 @@ export const Play = () => {
                 
             </div>
             <div className  = "maze">
-               {/* Maze goes here */}
+                <div className = "maze-inner">
+                <Maze1 />
+                </div>
             </div> 
         </div>
         
