@@ -6,9 +6,8 @@ import './terminal.css';
 
 export const Console = (props) => {
     const inputText = useRef();
-  
     const [consoleOutput, onEnter] = useOnEnter(props);
-
+    
     useEffect(() =>{
         inputText.current.value = "";
         inputText.current.focus();  

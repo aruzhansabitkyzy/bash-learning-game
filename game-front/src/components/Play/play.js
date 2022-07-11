@@ -4,7 +4,7 @@ import {Console} from '../Terminal/Console';
 import { DisplayOutput } from '../Terminal/DisplayOutput';
 import { Maze1 } from '../Maze/maze1';
 
-export const Play = () => {
+export const Play = (props) => {
     const [level, setLevel] = useState(1);
     const [definition, setDefinition] = useState();
     const tasks = [
@@ -99,7 +99,7 @@ export const Play = () => {
                         </select>
                     </div>
                     <div className="code" ref={scrollRef}>
-                        <Console height = {height} triggerHeight = {triggerHeight}/>
+                        <Console height = {height} triggerHeight = {triggerHeight} consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput}/>
                 
                     </div>
                  
@@ -113,7 +113,7 @@ export const Play = () => {
             </div>
             <div className  = "maze">
                 <div className = "maze-inner">
-                <Maze1 />
+                <Maze1 consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput}/>
                 </div>
             </div> 
         </div>
