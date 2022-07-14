@@ -1,47 +1,80 @@
 import './play.css';
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef, render} from 'react';
 import {Console} from '../Terminal/Console';
 import { DisplayOutput } from '../Terminal/DisplayOutput';
 import { Maze1 } from '../Maze/maze1';
+import {Commands} from './commands';
 
 export const Play = (props) => {
     const [level, setLevel] = useState(1);
-    const [definition, setDefinition] = useState();
+    const [def, setDef] = useState({});
+    // const [commands, setCommands] = useState({commands :{}});
+    // const [task, setTask] = useState({task : {}});
     const tasks = [
         {
             id: 1,
-            definition: 'Once you have a folder, you can move into it using the cd command. cd means change directory. You invoke it specifying a folder to move into. You can specify a folder name, or an entire path.\n Inside a folder you can list all the files that the folder contains using the ls command:',
+            title : "Hey! Welcome to “GameName”! Have fun learning terminal commands!",
+            commands: [
+                ["cd", "change directory. This command allows users to change from one directory to another or move from one folder to another."],
+                ["pwd","prints the current working directory"],
+                ["ls","lists all files in the current directory except for hidden files"],
+                ["mkdir","allows users to create or make new directories.  mkdir stands for make directory"],
+                ["rmdir","removes each directory specified on the command line, if they are empty."]
+            ],
+            task_title : "In the first level you should :",
+            task : [
+                "show your current path",
+                "go to folder Desktop",
+                "list all folder on Desktop",
+                "remove the first folder on Desktop",
+                "go to the second folder",
+                'create a new folder called “Finish”'
+            ],
+            valid_answer : ['pwd' , 'cd' , 'ls' , 'rmdir' , 'mkdir'],
+            maze: 1
+        },
+        {
+            id: 2,
+            title : "Hey! Welcome to “GameName”! Have fun learning terminal commands!",
+            commands: [
+                ["cd", "change directory. This command allows users to change from one directory to another or move from one folder to another."],
+                ["pwd","prints the current working directory"],
+                ["ls","lists all files in the current directory except for hidden files"],
+                ["mkdir","allows users to create or make new directories.  mkdir stands for make directory"],
+                ["rmdir","removes each directory specified on the command line, if they are empty."]
+            ],
+            task_title : "In the second level you should :",
+            task : {
+                t1: "show your current path",
+                t2: " go to folder Desktop",
+                t3: "list all folder on Desktop",
+                t4: "remove the first folder on Desktop",
+                t5: "go to the second folder",
+                t6: 'create a new folder called “Finish”'
+            },
             valid_answer : ['pwd' , 'cd' , 'ls' , 'rmdir' , 'mkdir'],
             maze: 1
         }
-        , 
-        {
-            id : 2,
-            definition : 'Loremvfnvjfndvknvkf v fndvjk dfjkfndv fdvnfdvn kf',
-            valid_answer: ['hey', 'efeh'],
-            maze: 2
-        }
     ]
     const [height, changeHeight] = useState(0);
+
      const triggerHeight = () => {
-        console.log("triggered");
         changeHeight(height + 1);
      }
     const scrollRef= useRef();
 
     useEffect(() => {
         if(scrollRef.current) {
-            console.log(scrollRef.current.scrollTop + " top");
-            console.log(scrollRef.current.scrollHeight + " height");
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;   
         }
     }, [height]); 
 
     useEffect(() => {
        tasks.map((task) => {
-            if(task.id == level) {
-                console.log(task.id + " " + level)
-                setDefinition(task.definition);
+            if(task.id == level) { 
+                setDef(task);
+                console.log(task + " is a task");
+                
                 return task;
             }
             else {
@@ -49,6 +82,7 @@ export const Play = (props) => {
             }
           });   
     }, [level])
+ 
 
     const changeLevel = (direction) => {
 
@@ -64,6 +98,24 @@ export const Play = (props) => {
         }
        
     }
+    const comm = Commands(def);
+    const cList = comm[0][0];
+        let title = cList?.definition.title;
+        let task_title = cList?.definition.task_title;
+        let commands = cList?.definition.commands;
+        let task = cList?.definition.task;
+        let valid_answer = cList?.definition.valid_answer;
+    
+    console.log(commands);
+    // console.log(cList.definition);
+    // let cm= Object.keys(cList).map((d, key) => {
+    //     console.log(d);
+    // });
+
+
+    console.log("is list");
+    // console.log(cList);
+
     return(
         <div className="play-container">
             <div className="game">
@@ -86,9 +138,28 @@ export const Play = (props) => {
                         </span>
                      </div>
                 </div>
-
+               
                 <div className="definition">
-                    <p>{definition}</p>
+                        <div className = "def_title">
+                           {title}
+                        </div>
+                        <div className = "def_commands">
+                            {commands?.map((command, key) => (
+                                <div className="all_commands" key ={command}><span className="command_name">{command[0]} </span><span className="command_desc">{command[1]}</span></div>
+                            ))}
+                        </div>
+                    
+                       
+                        <div className = "def_task_title">
+                            {task_title}
+                        </div>
+                        <div className = "def_task">
+                            {task?.map((t, key) => (
+                                <div className="task_desc" key = {t}>{t}</div>
+                            ))}
+                        </div>
+                     
+              
                 </div>
 
                 <div className="terminal">
@@ -119,5 +190,5 @@ export const Play = (props) => {
         </div>
         
         
-    )
-}
+    );
+  }

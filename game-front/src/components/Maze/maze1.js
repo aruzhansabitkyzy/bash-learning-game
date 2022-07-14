@@ -19,6 +19,7 @@ export const Maze1 = (props) => {
                 context.closePath();
             }
         }
+    
     }
 
   
@@ -40,6 +41,9 @@ export const Maze1 = (props) => {
         const player = new Player(15, roadHeight * 9.5);
         player.update(context, props.consoleInput);
         player.draw(context);
+        
+        context.font = "10px Arial"
+        context.strokeText("root",10, 150)
         
     }, [renderMaze]); 
     
