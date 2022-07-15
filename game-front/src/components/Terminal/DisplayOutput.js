@@ -10,11 +10,11 @@ export const DisplayOutput = ({consoleOutput}) => {
             <div className="out">
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                     
-                    {consoleOutput.map((text) => {
+                    {consoleOutput.map((text, i) => {
                        let res = text.split(":");
 
 
-                       return <div style={{ color: 'white' }}>
+                       return <div key={i} style={{ color: 'white' }}>
                                  <div> <Prompt /> {res[0]}</div>
                                  <div> <Prompt /> {res[1]}</div>
                               </div>

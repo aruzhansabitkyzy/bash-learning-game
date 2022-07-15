@@ -4,6 +4,8 @@ import {Console} from '../Terminal/Console';
 import { DisplayOutput } from '../Terminal/DisplayOutput';
 import { Maze1 } from '../Maze/maze1';
 import {Commands} from './commands';
+import {useOnEnter} from '../Terminal/useOnEnter';
+
 
 export const Play = (props) => {
     const [level, setLevel] = useState(1);
@@ -44,20 +46,19 @@ export const Play = (props) => {
                 ["rmdir","removes each directory specified on the command line, if they are empty."]
             ],
             task_title : "In the second level you should :",
-            task : {
-                t1: "show your current path",
-                t2: " go to folder Desktop",
-                t3: "list all folder on Desktop",
-                t4: "remove the first folder on Desktop",
-                t5: "go to the second folder",
-                t6: 'create a new folder called “Finish”'
-            },
+            task : [
+                "show your current path",
+                "go to folder Desktop",
+                "list all folder on Desktop",
+                "remove the first folder on Desktop",
+                "go to the second folder",
+                'create a new folder called “Finish”'
+            ],
             valid_answer : ['pwd' , 'cd' , 'ls' , 'rmdir' , 'mkdir'],
             maze: 1
         }
     ]
     const [height, changeHeight] = useState(0);
-
      const triggerHeight = () => {
         changeHeight(height + 1);
      }
@@ -73,8 +74,6 @@ export const Play = (props) => {
        tasks.map((task) => {
             if(task.id == level) { 
                 setDef(task);
-                console.log(task + " is a task");
-                
                 return task;
             }
             else {
@@ -106,16 +105,6 @@ export const Play = (props) => {
         let task = cList?.definition.task;
         let valid_answer = cList?.definition.valid_answer;
     
-    console.log(commands);
-    // console.log(cList.definition);
-    // let cm= Object.keys(cList).map((d, key) => {
-    //     console.log(d);
-    // });
-
-
-    console.log("is list");
-    // console.log(cList);
-
     return(
         <div className="play-container">
             <div className="game">
@@ -144,7 +133,7 @@ export const Play = (props) => {
                            {title}
                         </div>
                         <div className = "def_commands">
-                            {commands?.map((command, key) => (
+                            {commands?.map((command) => (
                                 <div className="all_commands" key ={command}><span className="command_name">{command[0]} </span><span className="command_desc">{command[1]}</span></div>
                             ))}
                         </div>
@@ -153,11 +142,11 @@ export const Play = (props) => {
                         <div className = "def_task_title">
                             {task_title}
                         </div>
-                        <div className = "def_task">
+                        <ul className = "def_task">
                             {task?.map((t, key) => (
-                                <div className="task_desc" key = {t}>{t}</div>
+                                <li className="task_desc" key = {t}>{t}</li>
                             ))}
-                        </div>
+                        </ul>
                      
               
                 </div>

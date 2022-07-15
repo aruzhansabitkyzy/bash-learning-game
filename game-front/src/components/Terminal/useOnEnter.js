@@ -12,7 +12,7 @@ export const useOnEnter = (props) => {
              updateConsoleOutput([...consoleOutput, `${value}:${newConsoleLine}`]);
              
              props.updateConsoleInput(value);
-            //  console.log(props.consoleInput +" hey"); 
+             console.log(props.consoleInput +" hey"); 
              props.triggerHeight(); 
             // const newConsoleInput = [...consoleInput];
             // newConsoleInput.push(value);
