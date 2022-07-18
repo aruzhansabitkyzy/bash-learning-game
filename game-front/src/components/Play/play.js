@@ -32,7 +32,7 @@ export const Play = (props) => {
                 "go to the second folder",
                 'create a new folder called “Finish”'
             ],
-            valid_answer : ['pwd' , 'cd' , 'ls' , 'rmdir' , 'mkdir'],
+            valid_answer : ['pwd' , 'cd Desktop' , 'ls' , 'rmdir first' , 'cd second', 'mkdir Finish'],
             maze: 1
         },
         {
@@ -159,7 +159,7 @@ export const Play = (props) => {
                         </select>
                     </div>
                     <div className="code" ref={scrollRef}>
-                        <Console height = {height} triggerHeight = {triggerHeight} consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput}/>
+                        <Console height = {height} triggerHeight = {triggerHeight} consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput} entered = {props.entered} setEntered = {props.setEntered}/>
                 
                     </div>
                  
@@ -173,7 +173,7 @@ export const Play = (props) => {
             </div>
             <div className  = "maze">
                 <div className = "maze-inner">
-                <Maze1 consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput}/>
+                <Maze1 consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput} entered = {props.entered} setEntered = {props.setEntered} def ={def}/>
                 </div>
             </div> 
         </div>

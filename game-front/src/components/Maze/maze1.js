@@ -4,13 +4,14 @@ import mazes from './Mazes.js';
 import Player from '../Maze/Player';
 import {Console} from '../Terminal/Console';
 
+const player = new Player();
 
 export const Maze1 = (props) => {
     const mazeArray  = mazes;
     const roadHeight =15;
     const roadWidth = 30;
-    const [posx, setPosx] = useState(15);
-    const [posy, setPosy] = useState(roadHeight * 9.5);
+    // const [posx, setPosx] = useState(15);
+    // const [posy, setPosy] = useState(roadHeight * 9.5);
     
     const renderMaze = (context) => {
         for(let i=0;i<mazeArray.length;i++) {
@@ -37,21 +38,19 @@ export const Maze1 = (props) => {
             }
         })
         
-        const setPosX =(posX) => {
-            console.log(posX);
-            setPosx(posx => posx + posX);
-        }
+        // const setPosX =(posX) => {       
+        //     console.log(posX);
+        //     setPosx(posx => posx + posX);
+
+        // }
         
-        const setPosY =(posY) => {
-            setPosy(posy => posy + posY);
-        }
-        
-        console.log(props.consoleInput + " ci");    
-        
+        // const setPosY =(posY) => {
+        //     setPosy(posy => posy + posY);
+        // }
+         
         const updatePos = (context) => {
-            
-            const player = new Player(posx, posy);
-            player.update(props.consoleInput, setPosX, setPosY);
+            player.update(props.consoleInput, props.def);
+
             player.draw(context);
         }
     
@@ -62,10 +61,9 @@ export const Maze1 = (props) => {
         // <Player posx={posx} posy={posy} setPosX={setPosX} setPosY={setPosY} />
         // updatePos();
         updatePos(context)
-        context.font = "10px Arial"
-        context.strokeText("root",10, 150)
-        
-    }, [props.consoleInput]); 
+        // context.font = "10px Arial"
+        // context.strokeText("root",10, 150)
+    }, [props.entered]); 
     
 
 

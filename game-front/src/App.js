@@ -7,10 +7,10 @@ import {useOnEnter} from './components/Terminal/useOnEnter';
 
 function App() { 
   const [consoleInput, updateConsoleInput] = useState([]);
-
+  const [entered, setEntered] = useState(false);
   return (
     <div>
-          <Play consoleInput = {consoleInput} updateConsoleInput = {updateConsoleInput}/>
+          <Play consoleInput = {consoleInput} updateConsoleInput = {updateConsoleInput} entered = {entered} setEntered = {setEntered}/>
     </div>
   );
 }
