@@ -5,11 +5,13 @@ import { DisplayOutput } from '../Terminal/DisplayOutput';
 import { Maze1 } from '../Maze/maze1';
 import {Commands} from './commands';
 import {useOnEnter} from '../Terminal/useOnEnter';
+import Player from '../Maze/Player';
 
 
 export const Play = (props) => {
     const [level, setLevel] = useState(1);
     const [def, setDef] = useState({});
+    
     // const [commands, setCommands] = useState({commands :{}});
     // const [task, setTask] = useState({task : {}});
     const tasks = [
@@ -70,7 +72,7 @@ export const Play = (props) => {
         }
     }, [height]); 
 
-    useEffect(() => {
+    useEffect(() => { 
        tasks.map((task) => {
             if(task.id == level) { 
                 setDef(task);
@@ -79,10 +81,9 @@ export const Play = (props) => {
             else {
                 return null;
             }
-          });   
+          });
     }, [level])
  
-
     const changeLevel = (direction) => {
 
         switch(direction) {
@@ -91,7 +92,7 @@ export const Play = (props) => {
                     setLevel(level-1);
                 } break;
             case "next" : 
-                if(level + 1 <= 5) {
+                if(level + 1 <= 5) { 
                     setLevel(level+1);
                 } break;
         }
@@ -110,7 +111,7 @@ export const Play = (props) => {
             <div className="game">
                 <div className="title">
                      <div className="logo">
-                        Title goes here
+                        Game name goes here
                      </div>
                      <div className="levels">
                         <span className="arrow" onClick={() => changeLevel("previous")}>
@@ -160,12 +161,11 @@ export const Play = (props) => {
                     </div>
                     <div className="code" ref={scrollRef}>
                         <Console height = {height} triggerHeight = {triggerHeight} consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput} entered = {props.entered} setEntered = {props.setEntered}/>
-                
                     </div>
                  
                 </div>
                 <div className = "next">
-                    <button className="btm-btn">
+                    <button className="btm-btn" onClick= {() => changeLevel("next")}>
                         Next
                     </button>
                 </div>
@@ -173,7 +173,7 @@ export const Play = (props) => {
             </div>
             <div className  = "maze">
                 <div className = "maze-inner">
-                <Maze1 consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput} entered = {props.entered} setEntered = {props.setEntered} def ={def}/>
+                <Maze1 consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput} entered = {props.entered} setEntered = {props.setEntered} def ={def} level = {level}/>
                 </div>
             </div> 
         </div>

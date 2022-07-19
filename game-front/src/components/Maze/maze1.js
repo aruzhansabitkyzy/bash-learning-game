@@ -3,16 +3,11 @@ import {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import mazes from './Mazes.js';
 import Player from '../Maze/Player';
 import {Console} from '../Terminal/Console';
-
 const player = new Player();
-
 export const Maze1 = (props) => {
     const mazeArray  = mazes;
     const roadHeight =15;
     const roadWidth = 30;
-    // const [posx, setPosx] = useState(15);
-    // const [posy, setPosy] = useState(roadHeight * 9.5);
-    
     const renderMaze = (context) => {
         for(let i=0;i<mazeArray.length;i++) {
             for(let j=0;j<mazeArray[i].length;j++) {
@@ -25,32 +20,15 @@ export const Maze1 = (props) => {
         }
         
     }
-    
-    
     const canvasRef= useRef(null);
-    // const changeMotion = (event) => {
-        //     console.log(event);
-        // }
         useLayoutEffect(() => {
             const animate = () => {
                 requestAnimationFrame(animate);
-                
             }
         })
-        
-        // const setPosX =(posX) => {       
-        //     console.log(posX);
-        //     setPosx(posx => posx + posX);
-
-        // }
-        
-        // const setPosY =(posY) => {
-        //     setPosy(posy => posy + posY);
-        // }
          
         const updatePos = (context) => {
             player.update(props.consoleInput, props.def);
-
             player.draw(context);
         }
     
@@ -58,15 +36,21 @@ export const Maze1 = (props) => {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
         renderMaze(context);
-        // <Player posx={posx} posy={posy} setPosX={setPosX} setPosY={setPosY} />
-        // updatePos();
         updatePos(context)
-        // context.font = "10px Arial"
-        // context.strokeText("root",10, 150)
     }, [props.entered]); 
     
-
-
+    useEffect(()=> {
+        console.log(player.state.xoffset  + " x before and y " +  player.state.yoffset);
+       player.state = {
+        ...player.state, 
+        xoffset:  player.state.xoffset = 15,
+        yoffset: player.state.yoffset = 15 * 9.5,
+        counter : player.state.counter = 0
+       }
+       console.log(player.state.xoffset + " x after and y " + player.state.yoffset);
+    }, [props.level])
+    
+    
     return(
             <div id="mazeContainer">
                     {/* <img src={require("../../icons/ghost-removebg-preview.png")} width="30px" height="30px"/> */}
