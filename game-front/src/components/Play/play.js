@@ -2,16 +2,14 @@ import './play.css';
 import {useState, useEffect, useRef, render} from 'react';
 import {Console} from '../Terminal/Console';
 import { DisplayOutput } from '../Terminal/DisplayOutput';
-import { Maze1 } from '../Maze/maze1';
 import {Commands} from './commands';
 import {useOnEnter} from '../Terminal/useOnEnter';
-import Player from '../Maze/Player';
-
+import {Header} from './header';
+import {Routes, Route} from 'react-router-dom';
 
 export const Play = (props) => {
     const [level, setLevel] = useState(1);
     const [def, setDef] = useState({});
-    
     // const [commands, setCommands] = useState({commands :{}});
     // const [task, setTask] = useState({task : {}});
     const tasks = [
@@ -28,13 +26,13 @@ export const Play = (props) => {
             task_title : "In the first level you should :",
             task : [
                 "show your current path",
-                "go to folder Desktop",
+                "go to Desktop",
                 "list all folder on Desktop",
-                "remove the first folder on Desktop",
-                "go to the second folder",
+                "remove the first folder “Start” on Desktop",
+                "go to the second folder “project”",
                 'create a new folder called “Finish”'
             ],
-            valid_answer : ['pwd' , 'cd Desktop' , 'ls' , 'rmdir first' , 'cd second', 'mkdir Finish'],
+            valid_answer : ['pwd' , 'cd Desktop' , 'ls' , 'rmdir Start' , 'cd project', 'mkdir Finish'],
             maze: 1
         },
         {
@@ -85,7 +83,7 @@ export const Play = (props) => {
     }, [level])
  
     const changeLevel = (direction) => {
-
+        
         switch(direction) {
             case "previous" :
                 if(level - 1 > 0) {
@@ -111,7 +109,7 @@ export const Play = (props) => {
             <div className="game">
                 <div className="title">
                      <div className="logo">
-                        Game name goes here
+                        Nebula
                      </div>
                      <div className="levels">
                         <span className="arrow" onClick={() => changeLevel("previous")}>
@@ -171,13 +169,11 @@ export const Play = (props) => {
                 </div>
                 
             </div>
-            <div className  = "maze">
+            {/* <div className  = "maze">
                 <div className = "maze-inner">
                 <Maze1 consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput} entered = {props.entered} setEntered = {props.setEntered} def ={def} level = {level}/>
                 </div>
-            </div> 
+            </div>  */}
         </div>
-        
-        
     );
   }

@@ -9,7 +9,7 @@
     display: flex;
 }
 .game {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -22,21 +22,6 @@
 .definition p {
     font-family:'Inconsolata';
     font-size: 25px;
-}
-.maze {
-    position: sticky;
-    margin: 0 10px 10px 10px;
-    top: 0;
-    width: 50vw;
-    height: 50vw;
-    min-width: 300px;
-    min-height: 300px;
-    max-width: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
-    border-radius: 20px;
-    /* width: 50%;
-    height: 100vh; */
 }
 option, select {
     font-family:'Inconsolata';
@@ -233,4 +218,51 @@ font-size: 20px;
 }
 .def_task_title, .def_task {
     font-size: 25px;
+}
+.login {
+    background-color: #434973;
+    height : 100vh;
+    width: 100vw;
+}
+.container-login {
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.box {
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+}
+.box form {
+    justify-content: space-between;
+    align-items: stretch;
+}
+form div {
+    margin-bottom: 30px;
+}
+form div label {
+    font-size: 24px;
+    display: inline-block;
+    margin-right : 10px;
+}
+form div input {
+    font-size: 20px;
+
+    width : 100%;  
+    height : 30px;
+    padding: 5px;
+}
+
+.login_button {
+    width: 100%;
+    height : 40px;
+    font-size: 24px;
+    cursor: pointer;
+    height: 40px;
+}
+.sign-up {
+    color: black;
 }
