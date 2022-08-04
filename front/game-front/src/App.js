@@ -5,8 +5,8 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {Play} from '../src/components/Play/play';
 import {useOnEnter} from './components/Terminal/useOnEnter';
 import {Header} from './components/Play/header';
-import {Login} from './components/Play/Login';
-import {Register} from './components/Play/Register';
+import Login from './components/Play/Login';
+import Register from './components/Play/Register';
 
 function App() { 
   const [consoleInput, updateConsoleInput] = useState([]);

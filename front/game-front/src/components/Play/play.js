@@ -109,7 +109,7 @@ export const Play = (props) => {
             <div className="game">
                 <div className="title">
                      <div className="logo">
-                        Nebula
+                        Game name
                      </div>
                      <div className="levels">
                         <span className="arrow" onClick={() => changeLevel("previous")}>
