@@ -10,7 +10,7 @@ export const DisplayOutput = ({consoleOutput}) => {
             <div className="out">
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                     
-                    {consoleOutput.map((text, i) => {
+                    {Object.values(consoleOutput).length != 0 &&  consoleOutput.map((text, i) => {
                        let res = text.split(":");
 
 

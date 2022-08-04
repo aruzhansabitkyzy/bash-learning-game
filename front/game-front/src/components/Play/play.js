@@ -1,6 +1,7 @@
 import './play.css';
 import {useState, useEffect, useRef, render} from 'react';
 import {Console} from '../Terminal/Console';
+import Confetti from 'react-confetti';
 import { DisplayOutput } from '../Terminal/DisplayOutput';
 import {Commands} from './commands';
 import {useOnEnter} from '../Terminal/useOnEnter';
@@ -10,6 +11,8 @@ import {Routes, Route} from 'react-router-dom';
 export const Play = (props) => {
     const [level, setLevel] = useState(1);
     const [def, setDef] = useState({});
+    const [show, setShow] = useState(false);
+    const [consoleInput, setConsoleInput] = useState([]);
     // const [commands, setCommands] = useState({commands :{}});
     // const [task, setTask] = useState({task : {}});
     const tasks = [
@@ -69,7 +72,7 @@ export const Play = (props) => {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;   
         }
     }, [height]); 
-
+   
     useEffect(() => { 
        tasks.map((task) => {
             if(task.id == level) { 
@@ -91,8 +94,15 @@ export const Play = (props) => {
                 } break;
             case "next" : 
                 if(level + 1 <= 5) { 
-                    setLevel(level+1);
-                } break;
+                    if(tasks[level -1].valid_answer[tasks[level-1].valid_answer.length - 1] == consoleInput.slice(0,-1)) {
+                        setLevel(level+1)
+                        setShow(true)
+                        console.log(level) 
+                    }
+                    else {
+                        setShow(false)
+                    }
+                } break
         }
        
     }
@@ -158,9 +168,9 @@ export const Play = (props) => {
                         </select>
                     </div>
                     <div className="code" ref={scrollRef}>
-                        <Console height = {height} triggerHeight = {triggerHeight} consoleInput = {props.consoleInput} updateConsoleInput = {props.updateConsoleInput} entered = {props.entered} setEntered = {props.setEntered}/>
+                        <Console height = {height} triggerHeight = {triggerHeight} consoleInput = {consoleInput} setConsoleInput={setConsoleInput} updateConsoleInput = {props.updateConsoleInput} entered = {props.entered} setEntered = {props.setEntered} tasks= {tasks} level = {level}/>
                     </div>
-                 
+                
                 </div>
                 <div className = "next">
                     <button className="btm-btn" onClick= {() => changeLevel("next")}>
@@ -168,6 +178,14 @@ export const Play = (props) => {
                     </button>
                 </div>
                 
+                  { level &&  <Confetti
+                    width = {window.innerWidth}
+                    height = {window.innerHeight}
+                    recycle = {level}
+                    numberOfPieces = {80}
+                    tweenDuration={1000}
+                    />
+                  }
             </div>
             {/* <div className  = "maze">
                 <div className = "maze-inner">

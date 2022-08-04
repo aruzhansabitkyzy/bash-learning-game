@@ -1,33 +1,30 @@
 import {useEffect, useState} from 'react';
 
+
 export const useOnEnter = (props) => { 
      
-    const commands = {
-
-        cd: "Directory has been changed",
-        ls: "The list of directories"
-    }
-    const triggerOnEnter = () => {
-        props.setEntered(!props.entered);
-        console.log("trigger");
-    }
+    const [count, setCount] = useState(0);
     const [consoleOutput, updateConsoleOutput]  = useState([]); 
+    useEffect(() => {
+        if(Object.keys(props.consoleInput).length != 0) {
+        let newConsoleLine = props.consoleInput.includes("1") == 1 ? "Correct" : "Incorrect";
+        if(newConsoleLine === "Correct") {
+            setCount(count+1)
+        } 
+        updateConsoleOutput([...consoleOutput, `${props.consoleInput.slice(0, -1)}:${newConsoleLine}`]);
+        props.triggerHeight(); 
+    }
+    }, [props.consoleInput]) 
+
     const onEnter = (value, key) => { 
          if(key === "Enter") { 
-            triggerOnEnter();
-            const newConsoleLine = commands[value] || "Invalid Command"; 
-             updateConsoleOutput([...consoleOutput, `${value}:${newConsoleLine}`]);
-             
-             props.updateConsoleInput(value);
-             console.log(props.consoleInput +" hey"); 
-             props.triggerHeight(); 
-            // const newConsoleInput = [...consoleInput];
-            // newConsoleInput.push(value);
-            // updateInputConsole(newConsoleInput);
-
-            // const newConsoleOutput = [...consoleOutput];
-            // newConsoleOutput.push(newConsoleLine);
-            // updateConsoleOutput(newConsoleOutput); 
+            if(value == props.tasks[props.level - 1].valid_answer[count]) {
+                props.setConsoleInput(value + "1")
+            } 
+            else {
+                props.setConsoleInput(value)
+            }
+           
         } 
        
     }
