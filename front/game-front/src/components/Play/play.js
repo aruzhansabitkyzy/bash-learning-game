@@ -5,14 +5,18 @@ import Confetti from 'react-confetti';
 import { DisplayOutput } from '../Terminal/DisplayOutput';
 import {Commands} from './commands';
 import {useOnEnter} from '../Terminal/useOnEnter';
-import {Header} from './header';
 import {Routes, Route} from 'react-router-dom';
+import useDidMountedEffect from './useDidMountedEffect';
+import {Popup} from './popup';
+import {useWindowSize} from 'react-use';
 
 export const Play = (props) => {
     const [level, setLevel] = useState(1);
     const [def, setDef] = useState({});
     const [show, setShow] = useState(false);
+    const [showPopup, setPopup] = useState(false)
     const [consoleInput, setConsoleInput] = useState([]);
+    const {w, h} = useWindowSize();
     // const [commands, setCommands] = useState({commands :{}});
     // const [task, setTask] = useState({task : {}});
     const tasks = [
@@ -36,29 +40,86 @@ export const Play = (props) => {
                 'create a new folder called “Finish”'
             ],
             valid_answer : ['pwd' , 'cd Desktop' , 'ls' , 'rmdir Start' , 'cd project', 'mkdir Finish'],
-            maze: 1
         },
         {
             id: 2,
-            title : "Hey! Welcome to “GameName”! Have fun learning terminal commands!",
+            title : "Congratulations, you passed the first level! Are you ready to challenge yourself even more? Good luck!",
             commands: [
-                ["cd", "change directory. This command allows users to change from one directory to another or move from one folder to another."],
-                ["pwd","prints the current working directory"],
-                ["ls","lists all files in the current directory except for hidden files"],
-                ["mkdir","allows users to create or make new directories.  mkdir stands for make directory"],
-                ["rmdir","removes each directory specified on the command line, if they are empty."]
+                ["cp", " copies a file. Hint: cp oldFile newFile"],
+                ["open","opens a file. (open . ) opens a current directory. the same command can be used to run the application     Hint: open file"],
+                ["touch"," creates a new file"],
+                ["gzip","- compresses the file and append a .gz extension to it. but the original file will be deleted. To prevent this, you can use the `-c` option and use output redirection to write the output to the `filename.gz` Hint: gzip -c filename.txt > filename.txt.gz"],
+                ["gunzip","decompresses the file.         Hint: gunzip filename.gz ."]
             ],
             task_title : "In the second level you should :",
             task : [
-                "show your current path",
-                "go to folder Desktop",
-                "list all folder on Desktop",
-                "remove the first folder on Desktop",
-                "go to the second folder",
-                'create a new folder called “Finish”'
+                "create a new file called “Vegetables”",
+                "copy the contents of file “Fruits” to “Vegetables”",
+                "open the file “Vegetables”",
+                "compress the folder “Vegetables” ",
+                "decompress the just compressed folder to the file with the same name as gzip file",
             ],
-            valid_answer : ['pwd' , 'cd' , 'ls' , 'rmdir' , 'mkdir'],
-            maze: 1
+            valid_answer : ['touch vegetables.txt' , 'copy fruits.txt vegetables.txt' , 'open vegetables.txt' , 'cd food.txt' , 'gzip -c  vegetables > vegetables.gz', 'gunzip vegetables.gz'],
+        },
+        {
+            id: 3,
+            title : "Congratulations, you passed the first level! Are you ready to challenge yourself even more? Good luck!",
+            commands: [
+                ["cp", " copies a file. Hint: cp oldFile newFile"],
+                ["open","opens a file. (open . ) opens a current directory. the same command can be used to run the application     Hint: open file"],
+                ["touch"," creates a new file"],
+                ["gzip","- compresses the file and append a .gz extension to it. but the original file will be deleted. To prevent this, you can use the `-c` option and use output redirection to write the output to the `filename.gz` Hint: gzip -c filename.txt > filename.txt.gz"],
+                ["gunzip","decompresses the file.         Hint: gunzip filename.gz ."]
+            ],
+            task_title : "In the second level you should :",
+            task : [
+                "create a new file called “Vegetables”",
+                "copy the contents of file “Fruits” to “Vegetables”",
+                "open the file “Vegetables”",
+                "compress the folder “Vegetables” ",
+                "decompress the just compressed folder to the file with the same name as gzip file",
+            ],
+            valid_answer : ['touch vegetables.txt' , 'copy fruits.txt vegetables.txt' , 'open vegetables.txt' , 'cd food.txt' , 'gzip -c  vegetables > vegetables.gz', 'gunzip vegetables.gz'],
+        },
+        {
+            id: 4,
+            title : "Congratulations, you passed the first level! Are you ready to challenge yourself even more? Good luck!",
+            commands: [
+                ["cp", " copies a file. Hint: cp oldFile newFile"],
+                ["open","opens a file. (open . ) opens a current directory. the same command can be used to run the application     Hint: open file"],
+                ["touch"," creates a new file"],
+                ["gzip","- compresses the file and append a .gz extension to it. but the original file will be deleted. To prevent this, you can use the `-c` option and use output redirection to write the output to the `filename.gz` Hint: gzip -c filename.txt > filename.txt.gz"],
+                ["gunzip","decompresses the file.         Hint: gunzip filename.gz ."]
+            ],
+            task_title : "In the second level you should :",
+            task : [
+                "create a new file called “Vegetables”",
+                "copy the contents of file “Fruits” to “Vegetables”",
+                "open the file “Vegetables”",
+                "compress the folder “Vegetables” ",
+                "decompress the just compressed folder to the file with the same name as gzip file",
+            ],
+            valid_answer : ['touch vegetables.txt' , 'copy fruits.txt vegetables.txt' , 'open vegetables.txt' , 'cd food.txt' , 'gzip -c  vegetables > vegetables.gz', 'gunzip vegetables.gz'],
+        },
+        {
+            id: 5,
+            title : "Congratulations, you passed the first level! Are you ready to challenge yourself even more? Good luck!",
+            commands: [
+                ["cp", " copies a file. Hint: cp oldFile newFile"],
+                ["open","opens a file. (open . ) opens a current directory. the same command can be used to run the application     Hint: open file"],
+                ["touch"," creates a new file"],
+                ["gzip","- compresses the file and append a .gz extension to it. but the original file will be deleted. To prevent this, you can use the `-c` option and use output redirection to write the output to the `filename.gz` Hint: gzip -c filename.txt > filename.txt.gz"],
+                ["gunzip","decompresses the file.         Hint: gunzip filename.gz ."]
+            ],
+            task_title : "In the second level you should :",
+            task : [
+                "create a new file called “Vegetables”",
+                "copy the contents of file “Fruits” to “Vegetables”",
+                "open the file “Vegetables”",
+                "compress the folder “Vegetables” ",
+                "decompress the just compressed folder to the file with the same name as gzip file",
+            ],
+            valid_answer : ['touch vegetables.txt' , 'copy fruits.txt vegetables.txt' , 'open vegetables.txt' , 'cd food.txt' , 'gzip -c  vegetables > vegetables.gz', 'gunzip vegetables.gz'],
         }
     ]
     const [height, changeHeight] = useState(0);
@@ -74,7 +135,7 @@ export const Play = (props) => {
     }, [height]); 
    
     useEffect(() => { 
-       tasks.map((task) => {
+        tasks.map((task) => {
             if(task.id == level) { 
                 setDef(task);
                 return task;
@@ -84,7 +145,13 @@ export const Play = (props) => {
             }
           });
     }, [level])
- 
+    useDidMountedEffect(()=> {
+        console.log("run")
+           setTimeout(()=> {
+               setShow(false)
+           }, 2000)
+        
+    }, [show]) 
     const changeLevel = (direction) => {
         
         switch(direction) {
@@ -97,6 +164,7 @@ export const Play = (props) => {
                     if(tasks[level -1].valid_answer[tasks[level-1].valid_answer.length - 1] == consoleInput.slice(0,-1)) {
                         setLevel(level+1)
                         setShow(true)
+                        setPopup(true)
                         console.log(level) 
                     }
                     else {
@@ -166,7 +234,7 @@ export const Play = (props) => {
                             <option value="unix-linux">Linux</option>
                             <option value="windows">Windows</option>
                         </select>
-                    </div>
+                    </div> 
                     <div className="code" ref={scrollRef}>
                         <Console height = {height} triggerHeight = {triggerHeight} consoleInput = {consoleInput} setConsoleInput={setConsoleInput} updateConsoleInput = {props.updateConsoleInput} entered = {props.entered} setEntered = {props.setEntered} tasks= {tasks} level = {level}/>
                     </div>
@@ -178,14 +246,15 @@ export const Play = (props) => {
                     </button>
                 </div>
                 
-                  { level &&  <Confetti
-                    width = {window.innerWidth}
-                    height = {window.innerHeight}
-                    recycle = {level}
-                    numberOfPieces = {80}
+                  { level &&  show ? <Confetti
+                    width = {w} 
+                    height = {h}
                     tweenDuration={1000}
-                    />
-                  }
+                    numberOfPieces={100}
+                    /> 
+                     : "" 
+                  } 
+                  {show ? <Popup showPopup = {showPopup} setPopup = {setPopup}/> : ""}
             </div>
             {/* <div className  = "maze">
                 <div className = "maze-inner">

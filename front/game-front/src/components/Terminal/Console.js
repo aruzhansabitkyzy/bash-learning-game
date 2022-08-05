@@ -12,6 +12,7 @@ export const Console = (props) => {
         inputText.current.value = "";
         inputText.current.focus();  
     }); 
+
     
     
     return ( 
@@ -19,7 +20,7 @@ export const Console = (props) => {
               <DisplayOutput consoleOutput = {consoleOutput} />
              <div className= "input-prompt">
                 <Prompt /> 
-                <input type="text" className="command" ref={inputText} onKeyPress = {({target: {value} , key}) => onEnter(value, key)}/>
+                <input type="text" className="command" ref={inputText} onKeyPress = {({target: {value} , key}) => onEnter(value, key, props.level)}/>
                     
              </div>
         </section>

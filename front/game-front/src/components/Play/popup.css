@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+.close_icon {
+    width: 30px;
+    height: 30px;
+}
+.popup {
+    position: absolute;
+    border-radius: 20px;
+    top: 50%;
+    left: 30%;
+    background-color: white;
+    width: 700px;
+    height: 200px;
+}
+.popup_container {
+    padding: 30px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.popup_close {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.popup_content {
+     margin-top: 30px;
+     align-self: center;
+     font-family:'Inconsolata';
+     font-size: 25px; 
+}
