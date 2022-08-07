@@ -62,7 +62,7 @@ render() {
                     <div>
                         <button className="login_button">Log in</button>
                     </div>
-                    <p>Don't have an account ? </p> <Link className="sign-up" to='/register'>Sign up</Link>
+                    <p>Don't have an account ?</p> <Link className="sign-up" to='/register'>Sign up</Link>
                 </form>
                 </div>
             </div>

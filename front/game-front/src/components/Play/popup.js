@@ -13,7 +13,7 @@ export const Popup = (props) => {
                         <img src= {require('../../icons/free-icon-cancel-130887.png')} className ="close_icon" />
                     </div> */}
                     <div className="popup_content">
-                         <p>Yaaaaay, congratulations! You passed a level!!!</p>
+                         <p>Congratulations! You passed a level!!!</p>
                     </div>
                </div>
           </div>
